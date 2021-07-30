@@ -29,6 +29,7 @@
       hfkjhdkfghkjdgkrgdk
     </div><!-- /.container-fluid -->
   </section>
+ </div>
   <!-- /.content -->
 
 
