@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\adminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +18,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::view('header','layouts.header');
-
-Route::view('dashboard','dashboard');
-
-Route::view('dashboard2','dashboard2');
+Route::get('registration',[adminController::class,'register']);
+Route::post('registration',[adminController::class,'store']);
