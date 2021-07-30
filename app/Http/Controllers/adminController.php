@@ -76,8 +76,8 @@ class adminController extends Controller
         return view('admin.dashboard');
     }
 
-    public function userform()
+    public function userlist()
     {
-        return view('admin.userform');
+        return view('admin.userlist');
     }
 }

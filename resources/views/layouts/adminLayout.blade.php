@@ -225,7 +225,7 @@
           </li>
 
           <li class="nav-item menu-open">
-            <a href="userform" class="nav-link">
+            <a href="userlist" class="nav-link">
               <i class="fas fa-user"></i>
               <p>
                 User

@@ -35,4 +35,4 @@ Route::get('dashboard',[adminController::class,'dashboard']);
 // Route::get('dashboard',[adminController::class,'dashboard']);
 
 // user form
-Route::get('userform',[adminController::class,'userform']);
+Route::get('userlist',[adminController::class,'userlist']);
