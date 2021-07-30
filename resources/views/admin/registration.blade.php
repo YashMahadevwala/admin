@@ -15,32 +15,48 @@
 
       <form action="/registration" method="post">
         @csrf
+        
+        @error('fullname')
+            <p style="color: red"> <i class="fas fa-exclamation-circle"></i> {{ $message }}</p>
+        @enderror
         <div class="input-group mb-3">
-          <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Full name">
+          <input type="text" id="fullname" name="fullname" class="form-control" placeholder="Full name" value="{{ old('fullname') }}">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
             </div>
           </div>
         </div>
+        
+        @error('email')
+            <p style="color: red"> <i class="fas fa-exclamation-circle"></i> {{ $message }}</p>
+        @enderror
         <div class="input-group mb-3">
-          <input type="email" id="email" name="email" class="form-control" placeholder="Email">
+          <input type="email" id="email" name="email" class="form-control" placeholder="Email" value="{{ old('email') }}">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
             </div>
           </div>
         </div>
+
+        @error('password')
+            <p style="color: red"> <i class="fas fa-exclamation-circle"></i> {{ $message }}</p>
+        @enderror
         <div class="input-group mb-3">
-          <input type="password" id="password" name="password" class="form-control" placeholder="Password">
+          <input type="password" id="password" name="password" class="form-control" placeholder="Password" value="">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
             </div>
           </div>
         </div>
+
+        @error('confirm_password')
+            <p style="color: red"> <i class="fas fa-exclamation-circle"></i> {{ $message }}</p>
+        @enderror
         <div class="input-group mb-3">
-          <input type="password" id="confirm_password" name="confirm_password" class="form-control" placeholder="Retype password">
+          <input type="password" id="confirm_password" name="confirm_password" class="form-control" value="" placeholder="Retype password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -50,11 +66,16 @@
         <div class="row">
           <div class="col-8">
             <div class="icheck-primary">
-              <input type="checkbox" id="agreeTerms" name="terms" value="agree">
-              <label for="agreeTerms">
+              <input type="checkbox" id="terms" name="terms" value="agree">
+              <label for="terms">
                I agree to the <a href="#">terms</a>
               </label>
+           
+              
             </div>
+            @if ($message = Session::get('termFail'))
+              <p style="color: red"> {{ $message }} </p>
+            @endif
           </div>
           <!-- /.col -->
           <div class="col-4">

@@ -18,5 +18,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// registration
 Route::get('registration',[adminController::class,'register']);
 Route::post('registration',[adminController::class,'store']);
+
+// login
+Route::get('login',[adminController::class,'login']);
+Route::post('login',[adminController::class,'loginCheck']);
+
+// dashboard
+Route::get('dashboard',[adminController::class,'dashboard']);
