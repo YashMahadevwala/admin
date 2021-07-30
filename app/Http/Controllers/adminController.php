@@ -64,7 +64,7 @@ class adminController extends Controller
                     $request->session()->put('uid', $data->id);
                     // return $request->session()->get('fullname');
                     // return $request->session()->get('uid');
-                    return view('dashboard');
+                    return redirect('dashboard');
 
                 }
             }
@@ -74,5 +74,10 @@ class adminController extends Controller
     public function dashboard()
     {
         return view('admin.dashboard');
+    }
+
+    public function userform()
+    {
+        return view('admin.userform');
     }
 }

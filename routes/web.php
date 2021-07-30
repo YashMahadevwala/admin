@@ -25,6 +25,14 @@ Route::post('registration',[adminController::class,'store']);
 // login
 Route::get('login',[adminController::class,'login']);
 Route::post('login',[adminController::class,'loginCheck']);
+Route::get('logout',function(){
+    session()->forget('fullname');
+    return "done";
+});
 
 // dashboard
 Route::get('dashboard',[adminController::class,'dashboard']);
+// Route::get('dashboard',[adminController::class,'dashboard']);
+
+// user form
+Route::get('userform',[adminController::class,'userform']);
