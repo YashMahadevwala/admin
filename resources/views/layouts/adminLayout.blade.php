@@ -25,6 +25,7 @@
       <!-- summernote -->
       <link rel="stylesheet" href="{{ asset('/css/summernote.min.css') }}">
       {{-- <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet"> --}}
+      <link href="https://kit-pro.fontawesome.com/releases/v5.15.3/css/pro.min.css" rel="stylesheet">
     </head>
     <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
@@ -39,10 +40,10 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Home</a>
+        <a href="/dashboard" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Contact</a>
+        <a href="/logout" class="nav-link">logout</a>
       </li>
     </ul>
 
@@ -232,6 +233,42 @@
               </p>
             </a>
           </li>
+
+          <li class="nav-item menu-open">
+            <a href="semesterlist" class="nav-link">
+              <i class="fas fa-books"></i>
+              <p>
+                Semester
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item menu-open">
+            <a href="semesterlist" class="nav-link">
+              <i class="fad fa-book-open"></i>
+              <p>
+                Subjects
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item menu-open">
+            <a href="semesterlist" class="nav-link">
+              <i class="fad fa-chalkboard-teacher"></i>
+              <p>
+                Faculties
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item menu-open">
+            <a href="semesterlist" class="nav-link">
+              <i class="fas fa-presentation"></i>
+              <p>
+                Lacture
+              </p>
+            </a>
+          </li>
           
         </ul>
       </nav>
@@ -241,6 +278,7 @@
   </aside>
 
 
+  {{-- content --}}
   @yield('contant')
 
 

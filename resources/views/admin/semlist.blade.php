@@ -1,5 +1,5 @@
 @extends('layouts.adminLayout')
-@section('title','User List')
+@section('title','Semester List')
 
 @section('contant')
 
@@ -13,12 +13,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">User</h1>
+          <h1 class="m-0">Semester</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
-            <li class="breadcrumb-item active">User</li>
+            <li class="breadcrumb-item active">Semester</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -38,8 +38,8 @@
               <div class="card">
                 <div class="card-header">
                   {{-- <h3 class="card-title">DataTable with minimal features &amp; hover style</h3> --}}
-                  <h3 class="card-title">User List</h3>
-                  <a type="button" href="adduser  " class="btn btn-success" style="float:right">Add User</a>
+                  <h3 class="card-title">Semester List</h3>
+                  <a type="button" href="addsemester" class="btn btn-success" style="float:right">Add Semester</a>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -52,28 +52,12 @@
                       <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Phone Number</th>
                       <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Role</th>
                       <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Avtar</th>
-                      <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="2" aria-label="Engine version: activate to sort column ascending">Action</th>
                     </tr>
                     </thead>
                     <tbody>
                     
 
-                      @foreach ($users as $user)
-                      <tr class="odd">
-                        <td class="dtr-control sorting_1" tabindex="0"> {{ $user->id }} </td>
-                        <td>{{ $user->firstname . " " . $user->lastname }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>{{ $user->mobile }}</td>
-                        <td>{{ $user->role_name }}</td>
-                        @if ($user->avtar)
-                          <td>{{ $user->avtar }}</td>
-                        @else
-                          <td> Avtar Not upload </td>
-                        @endif
-                        <td><a type="button" href="edituser/{{ $user->id }}" class="btn btn-warning" style="float:right">Edit</a></td>
-                        <td><a type="button" href="deleteuser/{{ $user->id }}" class="btn btn-danger" style="float:right">Delete</a></td>
-                        </tr>
-                      @endforeach
+                      
                     
                     </tbody>
                     {{-- <tfoot>

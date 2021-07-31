@@ -19,20 +19,38 @@ Route::get('/', function () {
 });
 
 // registration
-Route::get('registration',[adminController::class,'register']);
 Route::post('registration',[adminController::class,'store']);
 
 // login
-Route::get('login',[adminController::class,'login']);
 Route::post('login',[adminController::class,'loginCheck']);
-Route::get('logout',function(){
-    session()->forget('fullname');
-    return "done";
-});
 
-// dashboard
-Route::get('dashboard',[adminController::class,'dashboard']);
-// Route::get('dashboard',[adminController::class,'dashboard']);
+// logout
+Route::get('logout',[adminController::class,'logout']);
 
 // user form
+// Route::get('userlist',[adminController::class,'userlist']);
+// adduser
+// Route::get('adduser',[adminController::class,'adduser']);
+// Route::post('adduser',[adminController::class,'storeuser']);
+
+// middleware 
+Route::group(['middleware' => ['loginCheck']], function(){
+    Route::get('registration',[adminController::class,'register']);
+    Route::get('login',[adminController::class,'login']);
+    Route::get('dashboard',[adminController::class,'dashboard']);
+
+    // user form
 Route::get('userlist',[adminController::class,'userlist']);
+// adduser
+Route::get('adduser',[adminController::class,'adduser']);
+Route::post('adduser',[adminController::class,'storeuser']);
+Route::get('edituser/{id}',[adminController::class,'edituser']);
+Route::post('updateuser',[adminController::class,'updateuser']);
+Route::get('deleteuser/{id}',[adminController::class,'deleteuser']);
+
+// semester
+Route::get('semesterlist',[adminController::class,'semesterlist']);
+// add semester
+Route::get('addsemester',[adminController::class,'addsemester']);
+Route::post('addsemester',[adminController::class,'storesemester']);
+});
