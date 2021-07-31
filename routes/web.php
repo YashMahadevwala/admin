@@ -65,12 +65,12 @@ Route::group(['middleware' => ['loginCheck']], function(){
     });
     // subjects
     Route::group(['prefix' => 'subject'], function () {
-        Route::get('subjectlist',[subjectController::class,'subjectlist']);
-        Route::get('addsemester',[semesterController::class,'addsemester']);
-        Route::post('addsemester',[semesterController::class,'storesemester']);
-        Route::get('editsemester/{id}',[semesterController::class,'editsemester']);
-        Route::post('updatesemester',[semesterController::class,'updatesemester']);
-        Route::get('deletesemester/{id}',[semesterController::class,'deletesemester']);
+        Route::get('list',[subjectController::class,'subjectlist'])->name('admin.subjects.list');
+        Route::get('add',[semesterController::class,'addsemester'])->name('admin.subjects.add');
+        Route::post('add',[semesterController::class,'storesemester'])->name('admin.subjects.store');
+        Route::get('edit/{id}',[semesterController::class,'editsemester'])->name('admin.subjects.edit');
+        Route::post('update',[semesterController::class,'updatesemester'])->name('admin.subjects.update');
+        Route::get('delete/{id}',[semesterController::class,'deletesemester'])->name('admin.subjects.delete');
     });
 });
 });

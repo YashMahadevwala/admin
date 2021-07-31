@@ -40,7 +40,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="/dashboard" class="nav-link">Home</a>
+        <a href="{{ route('admin.dashboard') }}" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="{{ route('admin.logout') }}" class="nav-link">logout</a>
@@ -243,7 +243,7 @@
             </a>
           </li>
 
-          {{-- <li class="nav-item menu-open">
+          <li class="nav-item menu-open">
             <a href="{{ route('admin.subjects.list') }}" class="nav-link">
               <i class="fad fa-book-open"></i>
               <p>
@@ -252,7 +252,7 @@
             </a>
           </li>
 
-          <li class="nav-item menu-open">
+         {{-- <li class="nav-item menu-open">
             <a href="{{ route('admin.lectures.list') }}" class="nav-link">
               <i class="fas fa-presentation"></i>
               <p>

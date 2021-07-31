@@ -9,6 +9,6 @@ class subjectController extends Controller
     //
     public function subjectlist()
     {
-        return view('admin.addsub');
+        return view('admin.sublist');
     }
 }
