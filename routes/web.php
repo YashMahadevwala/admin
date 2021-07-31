@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\adminController;
+use App\Http\Controllers\semesterController;
+use App\Http\Controllers\userController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,17 +42,18 @@ Route::group(['middleware' => ['loginCheck']], function(){
     Route::get('dashboard',[adminController::class,'dashboard']);
 
     // user form
-Route::get('userlist',[adminController::class,'userlist']);
-// adduser
-Route::get('adduser',[adminController::class,'adduser']);
-Route::post('adduser',[adminController::class,'storeuser']);
-Route::get('edituser/{id}',[adminController::class,'edituser']);
-Route::post('updateuser',[adminController::class,'updateuser']);
-Route::get('deleteuser/{id}',[adminController::class,'deleteuser']);
+Route::get('userlist',[userController::class,'userlist']);
+Route::get('adduser',[userController::class,'adduser']);
+Route::post('adduser',[userController::class,'storeuser']);
+Route::get('edituser/{id}',[userController::class,'edituser']);
+Route::post('updateuser',[userController::class,'updateuser']);
+Route::get('deleteuser/{id}',[userController::class,'deleteuser']);
 
 // semester
-Route::get('semesterlist',[adminController::class,'semesterlist']);
-// add semester
-Route::get('addsemester',[adminController::class,'addsemester']);
-Route::post('addsemester',[adminController::class,'storesemester']);
+Route::get('semesterlist',[semesterController::class,'semesterlist']);
+Route::get('addsemester',[semesterController::class,'addsemester']);
+Route::post('addsemester',[semesterController::class,'storesemester']);
+Route::get('editsemester/{id}',[semesterController::class,'editsemester']);
+Route::post('updatesemester',[semesterController::class,'updatesemester']);
+Route::get('deletesemester/{id}',[semesterController::class,'deletesemester']);
 });

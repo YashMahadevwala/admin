@@ -47,16 +47,23 @@
                     <thead>
                     <tr role="row">
                       <th class="sorting sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">ID</th>
-                      <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Full Name</th>
-                      <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">Email</th>
-                      <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Phone Number</th>
-                      <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending">Role</th>
-                      <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending">Avtar</th>
+                      <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Semester Name</th>
+                      <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Is Active</th>
+                      <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="2" aria-label="Engine version: activate to sort column ascending">Action</th>
                     </tr>
                     </thead>
                     <tbody>
                     
 
+                      @foreach ($sems as $sem)
+                      <tr class="odd">
+                        <td class="dtr-control sorting_1" tabindex="0"> {{ $sem->id }} </td>
+                        <td>{{ $sem->semestername }}</td>
+                        <td>{{ $sem->is_active }}</td>
+                        <td><a type="button" href="editsemester/{{ $sem->id }}" class="btn btn-warning" style="float:right">Edit</a></td>
+                        <td><a type="button" href="deletesemester/{{ $sem->id }}" class="btn btn-danger" style="float:right">Delete</a></td>
+                        </tr>
+                      @endforeach
                       
                     
                     </tbody>

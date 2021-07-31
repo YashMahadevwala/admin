@@ -13,7 +13,12 @@ class Semester extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('semester', function (Blueprint $table) {
+            $table->id();
+            $table->string('semestername');
+            $table->string('is_active');
+            $table->timestamps();
+        });
     }
 
     /**

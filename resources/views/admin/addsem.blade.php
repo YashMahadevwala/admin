@@ -37,14 +37,14 @@
               <h3 class="card-title">Add New Semester</h3>
               <a type="button" href="/semesterlist" class="btn btn-danger" style="float:right">Back</a>
             </div>
-            <form method="POST" action="@isset($user) /updatesemester @else /addsemester @endisset" enctype="multipart/form-data">
+            <form method="POST" action="@isset($sems) /updatesemester @else /addsemester @endisset" enctype="multipart/form-data">
               @csrf
               <div class="card-body">
                 <div class="form-group">
                   <label for="firstname">Semester Name</label>
-                  @isset($user)
-                  <input type="hidden" class="form-control" id="id" name="id" value="{{ $user->id }}">
-                  <input type="text" class="form-control" id="semestername" name="semestername" value="{{ $user->semestername }}" placeholder="Enter Semester Name">
+                  @isset($sems)
+                  <input type="hidden" class="form-control" id="id" name="id" value="{{ $sems->id }}">
+                  <input type="text" class="form-control" id="semestername" name="semestername" value="{{ $sems->semestername }}" placeholder="Enter Semester Name">
                   @else
                   <input type="text" class="form-control" id="semestername" name="semestername" value="{{ old('semestername') }}" placeholder="Enter Semester Name">
                   @endisset
@@ -55,15 +55,15 @@
                 </div>
                 <div class="form-group">
                   <label for="active">Is Active Or Not</label>
-                  @isset($user)
+                  @isset($sems)
                   <select class="form-control" name="active" id="active">
-                      <option value="1"> Active </option>
-                      <option value="0"> Not Active </option>
+                      <option value="active" {{$sems->is_active == 'active' ? 'selected' : ''}}> Active </option>
+                      <option value="deactive" {{$sems->is_active == 'deactive' ? 'selected' : ''}}> Not Active </option>
                   </select>
                   @else
                   <select class="form-control" name="active" id="active">
-                    <option value="1"> Active </option>
-                    <option value="0"> Not Active </option>
+                    <option value="active" selected> Active </option>
+                    <option value="deactive"> Not Active </option>
                 </select>
                   @endisset
                 </div>
@@ -74,7 +74,7 @@
                 
               </div>
               <div class="card-footer">
-                @isset($user)
+                @isset($sems)
                 <button type="submit" class="btn btn-primary">Update</button>
                 @else
                 <button type="submit" class="btn btn-primary">Add</button>
