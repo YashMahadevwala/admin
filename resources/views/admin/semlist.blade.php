@@ -17,7 +17,7 @@
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
             <li class="breadcrumb-item active">Semester</li>
           </ol>
         </div><!-- /.col -->
@@ -39,7 +39,7 @@
                 <div class="card-header">
                   {{-- <h3 class="card-title">DataTable with minimal features &amp; hover style</h3> --}}
                   <h3 class="card-title">Semester List</h3>
-                  <a type="button" href="addsemester" class="btn btn-success" style="float:right">Add Semester</a>
+                  <a type="button" href="{{ route('admin.semesters.add') }}" class="btn btn-success" style="float:right">Add Semester</a>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -60,8 +60,8 @@
                         <td class="dtr-control sorting_1" tabindex="0"> {{ $sem->id }} </td>
                         <td>{{ $sem->semestername }}</td>
                         <td>{{ $sem->is_active }}</td>
-                        <td><a type="button" href="editsemester/{{ $sem->id }}" class="btn btn-warning" style="float:right">Edit</a></td>
-                        <td><a type="button" href="deletesemester/{{ $sem->id }}" class="btn btn-danger" style="float:right">Delete</a></td>
+                        <td><a type="button" href="{{ route('admin.semesters.edit',[$sem->id]) }}" class="btn btn-warning" style="float:right">Edit</a></td>
+                        <td><a type="button" href="{{ route('admin.semesters.delete',[$sem->id]) }}" class="btn btn-danger" style="float:right">Delete</a></td>
                         </tr>
                       @endforeach
                       

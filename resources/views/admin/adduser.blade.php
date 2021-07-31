@@ -17,7 +17,7 @@
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
             <li class="breadcrumb-item active">User</li>
           </ol>
         </div><!-- /.col -->
@@ -35,9 +35,9 @@
           <div class="card card-primary">
             <div class="card-header">
               <h3 class="card-title">Add New User</h3>
-              <a type="button" href="/userlist" class="btn btn-danger" style="float:right">Back</a>
+              <a type="button" href="{{ route('admin.users.list') }}" class="btn btn-danger" style="float:right">Back</a>
             </div>
-            <form method="POST" action="@isset($user) /updateuser @else /adduser @endisset" enctype="multipart/form-data">
+            <form method="POST" action="@isset($user) {{ route('admin.users.update') }} @else {{ route('admin.users.add') }} @endisset" enctype="multipart/form-data">
               @csrf
               <div class="card-body">
                 <div class="form-group">
@@ -131,7 +131,7 @@
                 @else
                 <button type="submit" class="btn btn-primary">Add</button>
                 @endisset
-                <a type="button" href="/userlist" class="btn btn-secondary">Cancel</a>
+                <a type="button" href="{{ route('admin.users.list') }}" class="btn btn-secondary">Cancel</a>
               </div>
             </form>
           </div>

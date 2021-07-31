@@ -1,5 +1,5 @@
 @extends('layouts.adminLayout')
-@section('title','User List')
+@section('title','Subjects List')
 
 @section('contant')
 
@@ -13,12 +13,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">Semester</h1>
+          <h1 class="m-0">Subjects</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
-            <li class="breadcrumb-item active">Semester</li>
+            <li class="breadcrumb-item active">Subjects</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -34,10 +34,10 @@
         <div class="col-md-12">
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Add New Semester</h3>
-              <a type="button" href="{{ route('admin.semesters.list') }}" class="btn btn-danger" style="float:right">Back</a>
+              <h3 class="card-title">Add New Subject</h3>
+              <a type="button" href="/subjectlist" class="btn btn-danger" style="float:right">Back</a>
             </div>
-            <form method="POST" action="@isset($sems) {{ route('admin.semesters.update') }} @else {{ route('admin.semesters.store') }} @endisset" enctype="multipart/form-data">
+            <form method="POST" action="@isset($sems) /updatesemester @else /addsemester @endisset" enctype="multipart/form-data">
               @csrf
               <div class="card-body">
                 <div class="form-group">
@@ -79,7 +79,7 @@
                 @else
                 <button type="submit" class="btn btn-primary">Add</button>
                 @endisset
-                <a type="button" href="{{ route('admin.semesters.list') }}" class="btn btn-secondary">Cancel</a>
+                <a type="button" href="/subjectlist" class="btn btn-secondary">Cancel</a>
               </div>
             </form>
           </div>

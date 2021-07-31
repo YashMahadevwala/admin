@@ -1,5 +1,5 @@
 @extends('layouts.simpleLayout')
-@section('title','Registration')
+@section('title','Log in')
 
 @section('contant')
 
@@ -22,7 +22,7 @@
       @endif
       <p class="login-box-msg">Sign in to start your session</p>
 
-      <form action="/login" method="post">
+      <form action="{{ route('admin.login') }}" method="post">
         @csrf
 
         @error('email')
@@ -85,7 +85,7 @@
         <a href="forgot-password.html">I forgot my password</a>
       </p>
       <p class="mb-0">
-        <a href="registration" class="text-center">Register a new membership</a>
+        <a href="{{ route('admin.registration') }}" class="text-center">Register a new membership</a>
       </p>
     </div>
     <!-- /.card-body -->

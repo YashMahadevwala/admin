@@ -17,7 +17,7 @@
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="dashboard">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
             <li class="breadcrumb-item active">User</li>
           </ol>
         </div><!-- /.col -->
@@ -39,7 +39,7 @@
                 <div class="card-header">
                   {{-- <h3 class="card-title">DataTable with minimal features &amp; hover style</h3> --}}
                   <h3 class="card-title">User List</h3>
-                  <a type="button" href="adduser  " class="btn btn-success" style="float:right">Add User</a>
+                  <a type="button" href="{{ route('admin.users.add') }}" class="btn btn-success" style="float:right">Add User</a>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -70,8 +70,8 @@
                         @else
                           <td> Avtar Not upload </td>
                         @endif
-                        <td><a type="button" href="edituser/{{ $user->id }}" class="btn btn-warning" style="float:right">Edit</a></td>
-                        <td><a type="button" href="deleteuser/{{ $user->id }}" class="btn btn-danger" style="float:right">Delete</a></td>
+                        <td><a type="button" href="{{ route('admin.users.edit',[$user->id])}}" class="btn btn-warning" style="float:right">Edit</a></td>
+                        <td><a type="button" href="{{ route('admin.users.delete',[$user->id])}}" class="btn btn-danger" style="float:right">Delete</a></td>
                         </tr>
                       @endforeach
                     

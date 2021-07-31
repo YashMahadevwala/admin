@@ -30,7 +30,7 @@ class semesterController extends Controller
             $addsem->is_active = $request->active;
             $addsem->save();
 
-            return redirect('semesterlist');
+            return redirect()->route('admin.semesters.list');
 
         }
     }
@@ -65,7 +65,7 @@ class semesterController extends Controller
             $updatesemester->is_active = $request->active;
             $updatesemester->save();
 
-            return redirect('semesterlist');
+            return redirect()->route('admin.semesters.list');
 
         }
 
@@ -76,7 +76,7 @@ class semesterController extends Controller
         $semester = semester::find($id);
         $semester->delete();
         // return $semester;
-        return redirect('semesterlist');
+        return redirect()->route('admin.semesters.list');
     }
 
   

@@ -13,7 +13,7 @@
     <div class="card-body register-card-body">
       <p class="login-box-msg">Register a new membership</p>
 
-      <form action="/registration" method="post">
+      <form action="{{route('admin.register')}}" method="post">
         @csrf
         
         @error('fullname')
@@ -97,7 +97,7 @@
         </a>
       </div>
 
-      <a href="/login" class="text-center">I already have a membership</a>
+      <a href="{{route('admin.login')}}" class="text-center">I already have a membership</a>
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->

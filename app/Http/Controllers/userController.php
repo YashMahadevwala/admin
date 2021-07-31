@@ -45,7 +45,7 @@ class userController extends Controller
             }
             $adduser->save();
 
-            return redirect('userlist');
+            return redirect()->route('admin.users.list');
 
         }
 
@@ -98,7 +98,7 @@ class userController extends Controller
             }
             $updateuser->save();
 
-            return redirect('userlist');
+            return redirect()->route('admin.users.list');
         // }
         
         // return $request->id;
@@ -111,7 +111,7 @@ class userController extends Controller
         $user = user::find($id);
         $user->delete();
         // return $user;
-        return redirect('userlist');
+        return redirect()->route('admin.users.list');
     }
 
 }

@@ -5,9 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\admin;
-use App\Models\role;
-use App\Models\user;
-use Illuminate\Support\Facades\DB;
 
 
 class adminController extends Controller
@@ -37,7 +34,7 @@ class adminController extends Controller
             $admin->email = $request->email;
             $admin->password = Hash::make($request->password);
             $admin->save();
-            return redirect('login')->with('success','Registration Succesfull !');
+            return redirect()->route('admin.login')->with('success','Registration Succesfull !');
             }
             
         }
@@ -68,7 +65,7 @@ class adminController extends Controller
                     $request->session()->put('uid', $data->id);
                     // return $request->session()->get('fullname');
                     // return $request->session()->get('uid');
-                    return redirect('dashboard');
+                    return redirect()->route('admin.dashboard');
 
                 }
             }
@@ -79,7 +76,7 @@ class adminController extends Controller
     {
         session()->forget('fullname');
         session()->forget('uid');
-        return redirect('login');
+        return redirect()->route('admin.login');
     }
 
     public function dashboard()

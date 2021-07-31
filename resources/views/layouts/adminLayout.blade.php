@@ -43,7 +43,7 @@
         <a href="/dashboard" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="/logout" class="nav-link">logout</a>
+        <a href="{{ route('admin.logout') }}" class="nav-link">logout</a>
       </li>
     </ul>
 
@@ -217,7 +217,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
-            <a href="dashboard" class="nav-link active">
+            <a href="{{ route('admin.dashboard') }}" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -226,7 +226,7 @@
           </li>
 
           <li class="nav-item menu-open">
-            <a href="userlist" class="nav-link">
+            <a href="{{ route('admin.users.list') }}" class="nav-link">
               <i class="fas fa-user"></i>
               <p>
                 User
@@ -235,7 +235,7 @@
           </li>
 
           <li class="nav-item menu-open">
-            <a href="semesterlist" class="nav-link">
+            <a href="{{ route('admin.semesters.list') }}" class="nav-link">
               <i class="fas fa-books"></i>
               <p>
                 Semester
@@ -243,8 +243,8 @@
             </a>
           </li>
 
-          <li class="nav-item menu-open">
-            <a href="semesterlist" class="nav-link">
+          {{-- <li class="nav-item menu-open">
+            <a href="{{ route('admin.subjects.list') }}" class="nav-link">
               <i class="fad fa-book-open"></i>
               <p>
                 Subjects
@@ -253,22 +253,13 @@
           </li>
 
           <li class="nav-item menu-open">
-            <a href="semesterlist" class="nav-link">
-              <i class="fad fa-chalkboard-teacher"></i>
-              <p>
-                Faculties
-              </p>
-            </a>
-          </li>
-
-          <li class="nav-item menu-open">
-            <a href="semesterlist" class="nav-link">
+            <a href="{{ route('admin.lectures.list') }}" class="nav-link">
               <i class="fas fa-presentation"></i>
               <p>
                 Lacture
               </p>
             </a>
-          </li>
+          </li> --}}
           
         </ul>
       </nav>

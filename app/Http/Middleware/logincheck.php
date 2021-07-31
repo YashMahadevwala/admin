@@ -16,11 +16,11 @@ class logincheck
      */
     public function handle(Request $request, Closure $next)
     {
-        if(!session() -> has('fullname') && ($request->path() != 'login')){
-            return redirect('login');
+        if(!session() -> has('fullname') && ($request->path() != 'admin/login')){
+            return redirect()->route('admin.login');
         }
-        if(session() -> has('fullname') && ($request->path() == 'login' || $request->path() == 'registration')){
-            return redirect('dashboard');
+        if(session() -> has('fullname') && ($request->path() == 'admin/login' || $request->path() == 'admin/registration')){
+            return redirect()->route('admin.dashboard');
         }
         return $next($request);
     }
