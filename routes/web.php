@@ -5,6 +5,7 @@ use App\Http\Controllers\userController;
 use App\Http\Controllers\adminController;
 use App\Http\Controllers\semesterController;
 use App\Http\Controllers\subjectController;
+use App\Http\Controllers\lactureController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,14 @@ Route::get('/', function () {
 // Route::post('adduser',[adminController::class,'storeuser']);
 
 // middleware 
+// Route::get('sendfacultymail',function(){
+//     $to_name = 'Trainee';
+//     $to_email = 'trainee15.dynamicdreamz@gmail.com';
+//     $data = array('name' => 'king','body'=>'test mail');
+//     Mail::send('admin.mail.faculty_mail',$data,function($message) use ($to_name,$to_email){
+
+//     });
+// });
 Route::group(['middleware' => ['loginCheck']], function(){
     
     Route::group(['prefix' => 'admin'], function () {
@@ -84,3 +93,7 @@ Route::group(['middleware' => ['loginCheck']], function(){
 
 });
 });
+
+Route::get('sendmail',[userController::class,'sendmail'])->name('admin.sendmail');
+
+Route::view('setpassword','admin.setpassword')->name('admin.setpassword');

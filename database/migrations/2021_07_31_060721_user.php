@@ -21,6 +21,7 @@ class User extends Migration
             $table->double('mobile');
             $table->integer('role_no');
             $table->text('avtar');
+            $table->string('password');
             $table->timestamps();
         });
     }

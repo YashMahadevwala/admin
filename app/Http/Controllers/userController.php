@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\user;
 use App\Models\role;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class userController extends Controller
 {
@@ -37,6 +38,7 @@ class userController extends Controller
             $adduser->email = $request->email;
             $adduser->mobile = $request->mobile;
             $adduser->role_no = $request->role;
+            $adduser->is_approve = 0;
             $file = $request->file('avtar');
             if ($file) {
                 $destinationPath = 'images/';
@@ -45,6 +47,17 @@ class userController extends Controller
             }
             $adduser->save();
 
+            $data = [
+                'subject' => 'Subject',
+                'email' => $request->email
+            ];
+    
+            Mail::send('mail.faculty_mail', $data, function($message) use ($data) {
+                $message->to($data['email'])
+                ->subject($data['subject']);
+              });
+      
+            
             return redirect()->route('admin.users.list');
 
         }
@@ -113,5 +126,39 @@ class userController extends Controller
         // return $user;
         return redirect()->route('admin.users.list');
     }
+
+
+    public function sendmail()
+    {
+        // return view('mail.faculty_mail');
+        // $to_name = 'yash';
+        // $to_email = 'trainee15.dynamicdreamz@gmail.com';
+        // $data = array($to_name=>'Cloudways ('.$to_email.')', 'body' => 'test mail');
+
+        // Mail::send('mail', $data, function($message) use ($to_name, $to_email) {
+        // $message->to($to_email, $to_name)
+        // ->subject('Laravel Test Mail');
+        // $message->from('SENDER_EMAIL_ADDRESS’,’Test Mail');
+        // });
+
+//         $data = [
+//             'subject' => 'Subject',
+//             'email' => 'yashmahadevwala00@gmail.com',
+//             'content' => 'content'
+//         ];
+
+//         Mail::send('mail.faculty_mail', $data, function($message) use ($data) {
+//             $message->to($data['email'])
+//             ->subject($data['subject']);
+//           });
+//   echo "hello";
+//   die();
+        //   return back()->with(['message' => 'Email successfully sent!']);
+      
+   
+//    return 'Email sent Successfully';
+    }
+
+
 
 }
