@@ -34,7 +34,11 @@
         <div class="col-md-12">
           <div class="card card-primary">
             <div class="card-header">
+              @isset($sems)
+              <h3 class="card-title">Update Semester</h3>
+              @else
               <h3 class="card-title">Add New Semester</h3>
+              @endisset
               <a type="button" href="{{ route('admin.semesters.list') }}" class="btn btn-danger" style="float:right">Back</a>
             </div>
             <form method="POST" action="@isset($sems) {{ route('admin.semesters.update') }} @else {{ route('admin.semesters.store') }} @endisset" enctype="multipart/form-data">

@@ -227,7 +227,7 @@
 
           <li class="nav-item menu-open">
             <a href="{{ route('admin.users.list') }}" class="nav-link">
-              <i class="fas fa-user"></i>
+              <i class="nav-icon fas fa-user"></i>
               <p>
                 User
               </p>
@@ -236,7 +236,7 @@
 
           <li class="nav-item menu-open">
             <a href="{{ route('admin.semesters.list') }}" class="nav-link">
-              <i class="fas fa-books"></i>
+              <i class="nav-icon fas fa-books"></i>
               <p>
                 Semester
               </p>
@@ -245,21 +245,23 @@
 
           <li class="nav-item menu-open">
             <a href="{{ route('admin.subjects.list') }}" class="nav-link">
-              <i class="fad fa-book-open"></i>
+              <i class="nav-icon fad fa-book-open"></i>
               <p>
                 Subjects
               </p>
             </a>
           </li>
 
-         {{-- <li class="nav-item menu-open">
-            <a href="{{ route('admin.lectures.list') }}" class="nav-link">
-              <i class="fas fa-presentation"></i>
+         <li class="nav-item menu-open">
+            <a href="
+            {{-- {{ route('admin.lectures.list') }} --}}
+            " class="nav-link">
+              <i class="nav-icon fas fa-presentation"></i>
               <p>
                 Lacture
               </p>
             </a>
-          </li> --}}
+          </li>
           
         </ul>
       </nav>
@@ -267,6 +269,8 @@
     </div></div></div><div class="os-scrollbar os-scrollbar-horizontal os-scrollbar-unusable"><div class="os-scrollbar-track"><div class="os-scrollbar-handle" style="width: 100%; transform: translate(0px, 0px);"></div></div></div><div class="os-scrollbar os-scrollbar-vertical"><div class="os-scrollbar-track"><div class="os-scrollbar-handle" style="height: 16.8755%; transform: translate(0px, 0px);"></div></div></div><div class="os-scrollbar-corner"></div></div>
     <!-- /.sidebar -->
   </aside>
+
+
 
 
   {{-- content --}}

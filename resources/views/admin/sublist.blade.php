@@ -13,12 +13,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">Semester</h1>
+          <h1 class="m-0">Subjects</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-            <li class="breadcrumb-item active">Semester</li>
+            <li class="breadcrumb-item active">Subjects</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -38,8 +38,8 @@
               <div class="card">
                 <div class="card-header">
                   {{-- <h3 class="card-title">DataTable with minimal features &amp; hover style</h3> --}}
-                  <h3 class="card-title">Semester List</h3>
-                  <a type="button" href="{{ route('admin.semesters.add') }}" class="btn btn-success" style="float:right">Add Semester</a>
+                  <h3 class="card-title">Subjects List</h3>
+                  <a type="button" href="{{ route('admin.subjects.add') }}" class="btn btn-success" style="float:right">Add Subject</a>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -47,22 +47,28 @@
                     <thead>
                     <tr role="row">
                       <th class="sorting sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">ID</th>
-                      <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Semester Name</th>
+                      <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Subjects Name</th>
                       <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Is Active</th>
+                      <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Type</th>
+                      <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Semester</th>
+                      <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Faculty</th>
                       <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="2" aria-label="Engine version: activate to sort column ascending">Action</th>
                     </tr>
                     </thead>
                     <tbody>
-                    
+          
 
-                      @foreach ($sems as $sem)
+                      @foreach ($subs as $sub)
                       <tr class="odd">
-                        <td class="dtr-control sorting_1" tabindex="0"> {{ $sem->id }} </td>
-                        <td>{{ $sem->semestername }}</td>
-                        <td>{{ $sem->is_active }}</td>
-                        <td><a type="button" href="{{ route('admin.semesters.edit',[$sem->id]) }}" class="btn btn-warning" style="float:right">Edit</a></td>
-                        <td><a type="button" href="{{ route('admin.semesters.delete',[$sem->id]) }}" class="btn btn-danger" style="float:right">Delete</a></td>
-                        </tr>
+                        <td class="dtr-control sorting_1" tabindex="0"> {{ $sub->id }} </td>
+                        <td>{{ $sub->subjectname }}</td>
+                        <td>{{ $sub->is_active }}</td>
+                        <td>{{ $sub->type }}</td>
+                        <td>{{ get_sem($sub->semester) }}</td>
+                        <td>{{ get_name($sub->faculty) }}</td>
+                        <td><a type="button" href="{{ route('admin.subjects.edit',[$sub->id]) }}" class="btn btn-warning" style="float:right">Edit</a></td>
+                        <td><a type="button" href="{{ route('admin.subjects.delete',[$sub->id]) }}" class="btn btn-danger" style="float:right">Delete</a></td>
+                      </tr>
                       @endforeach
                       
                     

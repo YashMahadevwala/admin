@@ -34,7 +34,11 @@
         <div class="col-md-12">
           <div class="card card-primary">
             <div class="card-header">
+              @isset($user)
+              <h3 class="card-title">Update User</h3>
+              @else
               <h3 class="card-title">Add New User</h3>
+              @endisset
               <a type="button" href="{{ route('admin.users.list') }}" class="btn btn-danger" style="float:right">Back</a>
             </div>
             <form method="POST" action="@isset($user) {{ route('admin.users.update') }} @else {{ route('admin.users.add') }} @endisset" enctype="multipart/form-data">

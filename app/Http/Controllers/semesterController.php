@@ -60,7 +60,7 @@ class semesterController extends Controller
             
             $updatesemester = new semester;
             $updatesemester = semester::find($request->id);
-
+            // return $updatesemester;
             $updatesemester->semestername = $request->semestername;
             $updatesemester->is_active = $request->active;
             $updatesemester->save();
