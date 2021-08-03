@@ -46,10 +46,12 @@ class userController extends Controller
                 $file->move($destinationPath,$file->getClientOriginalName());
             }
             $adduser->save();
-
+            $id = $adduser->id;
+            // return $id;
             $data = [
-                'subject' => 'Subject',
-                'email' => $request->email
+                'subject' => 'Set your Password',
+                'email' => $request->email,
+                'id' => $id
             ];
     
             Mail::send('mail.faculty_mail', $data, function($message) use ($data) {
@@ -58,7 +60,7 @@ class userController extends Controller
               });
       
             
-            return redirect()->route('admin.users.list');
+            return redirect()->route('admin.users.list')->with('success','data saved !');
 
         }
 
@@ -111,7 +113,7 @@ class userController extends Controller
             }
             $updateuser->save();
 
-            return redirect()->route('admin.users.list');
+            return redirect()->route('admin.users.list')->with('updated','Data Updated !');
         // }
         
         // return $request->id;
@@ -124,41 +126,9 @@ class userController extends Controller
         $user = user::find($id);
         $user->delete();
         // return $user;
-        return redirect()->route('admin.users.list');
+        return redirect()->route('admin.users.list')->with('danger','Data Deleted !');
     }
 
-
-    public function sendmail()
-    {
-        // return view('mail.faculty_mail');
-        // $to_name = 'yash';
-        // $to_email = 'trainee15.dynamicdreamz@gmail.com';
-        // $data = array($to_name=>'Cloudways ('.$to_email.')', 'body' => 'test mail');
-
-        // Mail::send('mail', $data, function($message) use ($to_name, $to_email) {
-        // $message->to($to_email, $to_name)
-        // ->subject('Laravel Test Mail');
-        // $message->from('SENDER_EMAIL_ADDRESS’,’Test Mail');
-        // });
-
-//         $data = [
-//             'subject' => 'Subject',
-//             'email' => 'yashmahadevwala00@gmail.com',
-//             'content' => 'content'
-//         ];
-
-//         Mail::send('mail.faculty_mail', $data, function($message) use ($data) {
-//             $message->to($data['email'])
-//             ->subject($data['subject']);
-//           });
-//   echo "hello";
-//   die();
-        //   return back()->with(['message' => 'Email successfully sent!']);
-      
-   
-//    return 'Email sent Successfully';
-    }
-
-
+    
 
 }

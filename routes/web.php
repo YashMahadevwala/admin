@@ -6,6 +6,8 @@ use App\Http\Controllers\adminController;
 use App\Http\Controllers\semesterController;
 use App\Http\Controllers\subjectController;
 use App\Http\Controllers\lactureController;
+use App\Http\Controllers\setpasswordController;
+use App\Http\Controllers\testController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,31 +20,12 @@ use App\Http\Controllers\lactureController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-// registration
-
-// login
-
-// logout
-
-// user form
-// Route::get('userlist',[adminController::class,'userlist']);
-// adduser
-// Route::get('adduser',[adminController::class,'adduser']);
-// Route::post('adduser',[adminController::class,'storeuser']);
-
-// middleware 
-// Route::get('sendfacultymail',function(){
-//     $to_name = 'Trainee';
-//     $to_email = 'trainee15.dynamicdreamz@gmail.com';
-//     $data = array('name' => 'king','body'=>'test mail');
-//     Mail::send('admin.mail.faculty_mail',$data,function($message) use ($to_name,$to_email){
-
-//     });
+// Route::get('/', function () {
+//     return view('welcome');
 // });
+
+
+
 Route::group(['middleware' => ['loginCheck']], function(){
     
     Route::group(['prefix' => 'admin'], function () {
@@ -73,7 +56,7 @@ Route::group(['middleware' => ['loginCheck']], function(){
         Route::get('delete/{id}',[semesterController::class,'deletesemester'])->name('admin.semesters.delete');
     });
     // subjects
-    Route::group(['prefix' => 'subject'], function () {
+    Route::group(['prefix' => 'subjects'], function () {
         Route::get('list',[subjectController::class,'subjectlist'])->name('admin.subjects.list');
         Route::get('add',[subjectController::class,'addsubject'])->name('admin.subjects.add');
         Route::post('add',[subjectController::class,'storesubject'])->name('admin.subjects.store');
@@ -82,7 +65,7 @@ Route::group(['middleware' => ['loginCheck']], function(){
         Route::get('delete/{id}',[subjectController::class,'deletesubject'])->name('admin.subjects.delete');
     });
     // Lacture
-    Route::group(['prefix' => 'lacture'], function () {
+    Route::group(['prefix' => 'lactures'], function () {
         Route::get('list',[lactureController::class,'lacturelist'])->name('admin.lactures.list');
         Route::get('add',[lactureController::class,'addlacture'])->name('admin.lactures.add');
         Route::post('add',[lactureController::class,'storelacture'])->name('admin.lactures.store');
@@ -90,10 +73,14 @@ Route::group(['middleware' => ['loginCheck']], function(){
         Route::post('update',[lactureController::class,'updatelacture'])->name('admin.lactures.update');
         Route::get('delete/{id}',[lactureController::class,'deletelacture'])->name('admin.lactures.delete');
     });
-
+    
 });
 });
+// 
+Route::get('setpassword/set/{id}',[setpasswordController::class,'setpassword'])->name('setpassword.set');
+Route::post('setpassword/setpassword',[setpasswordController::class,'setuppassword'])->name('setpassword.setpassword');
 
-Route::get('sendmail',[userController::class,'sendmail'])->name('admin.sendmail');
+// test
+Route::get('encode',[setpasswordController::class,'testencode']);
 
-Route::view('setpassword','admin.setpassword')->name('admin.setpassword');
+Route::get('toastr',[testController::class,'toastr']);

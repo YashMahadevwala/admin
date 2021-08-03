@@ -23,6 +23,7 @@ class User extends Migration
             $table->text('avtar');
             $table->string('password');
             $table->timestamps();
+            // $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

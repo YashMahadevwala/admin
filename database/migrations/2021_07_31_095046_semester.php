@@ -18,6 +18,7 @@ class Semester extends Migration
             $table->string('semestername');
             $table->string('is_active');
             $table->timestamps();
+            // $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

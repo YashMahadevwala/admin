@@ -30,6 +30,14 @@
 
   <!-- Main content -->
   <section class="content">
+    @if (Session::get('success'))
+  {{-- {{success_alert()}} --}}
+  {!! success_alert(Session::get('success')) !!}
+  @elseif(Session::get('updated'))
+  {!! success_alert(Session::get('updated')) !!}
+  @elseif(Session::get('danger'))
+  {!! danger_alert(Session::get('danger')) !!}
+@endif
     <div class="container-fluid">
       <section class="content">
         <div class="container-fluid">
@@ -59,9 +67,9 @@
                     <tbody>
                     
 
-                      @foreach ($users as $user)
+                      @foreach ($users as $k => $user)
                       <tr class="odd">
-                        <td class="dtr-control sorting_1" tabindex="0"> {{ $user->id }} </td>
+                        <td class="dtr-control sorting_1" tabindex="0"> {{ $k + 1 }} </td>
                         <td>{{ $user->firstname . " " . $user->lastname }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->mobile }}</td>
@@ -71,7 +79,7 @@
                         @else
                           <td> Avtar Not upload </td>
                         @endif 
-                        @if ($user->is_approve == 0)
+                        @if ($user->password == '')
                           <td><i class="fas fa-circle" style="color: red"></i></td>
                         @else
                           <td><i class="fas fa-circle" style="color: green"></i></td>
@@ -90,7 +98,6 @@
                 <!-- /.card-body -->
               </div>
               <!-- /.card -->
-  
               
               <!-- /.card -->
             </div>
@@ -103,9 +110,6 @@
 
     </div><!-- /.container-fluid -->
   </section>
- </div>
-
-  <!-- /.content -->
-
+</div>
 
 @endsection

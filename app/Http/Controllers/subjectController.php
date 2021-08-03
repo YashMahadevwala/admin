@@ -48,7 +48,7 @@ class subjectController extends Controller
             $addsub->faculty = $request->faculty;
             $addsub->save();
 
-            return redirect()->route('admin.subjects.list');
+            return redirect()->route('admin.subjects.list')->with('success','data saved !');
 
         }
     }
@@ -81,7 +81,7 @@ class subjectController extends Controller
             $updatesub->faculty = $request->faculty;
             $updatesub->save();
 
-            return redirect()->route('admin.subjects.list');
+            return redirect()->route('admin.subjects.list')->with('updated','Data Updated !');
 
         }
 
@@ -92,7 +92,7 @@ class subjectController extends Controller
         $subject = subject::find($id);
         $subject->delete();
         // return $subject;
-        return redirect()->route('admin.subjects.list');
+        return redirect()->route('admin.subjects.list')->with('danger','Data Deleted !');
     }
 
 }

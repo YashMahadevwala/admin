@@ -23,15 +23,16 @@
       <!-- Daterange picker -->
       <link rel="stylesheet" href="{{ asset('css/daterangepicker.css') }}">
       <!-- summernote -->
-      <link rel="stylesheet" href="{{ asset('/css/summernote.min.css') }}">
+      {{-- Toastr --}}
+      <link rel="stylesheet" href="{{ asset('/css/toastr.min.css') }}">
+      <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
       {{-- <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet"> --}}
       <link href="https://kit-pro.fontawesome.com/releases/v5.15.3/css/pro.min.css" rel="stylesheet">
     </head>
     <body class="hold-transition sidebar-mini layout-fixed">
-    <div class="wrapper">
 
-  
-  
+<div class="wrapper">
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
@@ -214,10 +215,8 @@
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-          <!-- Add icons to the links using the .nav-icon class
-               with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
-            <a href="{{ route('admin.dashboard') }}" class="nav-link active">
+            <a href="{{ route('admin.dashboard') }}" class="nav-link {{ (Request::route()->getName() == 'admin.dashboard') ? 'active' : '' }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -226,16 +225,16 @@
           </li>
 
           <li class="nav-item menu-open">
-            <a href="{{ route('admin.users.list') }}" class="nav-link">
+            <a href="{{ route('admin.users.list') }}" class="nav-link  {{activeMenu('users')}} ">
               <i class="nav-icon fas fa-user"></i>
               <p>
                 User
               </p>
-            </a>
+            </a>  
           </li>
 
           <li class="nav-item menu-open">
-            <a href="{{ route('admin.semesters.list') }}" class="nav-link">
+            <a href="{{ route('admin.semesters.list') }}" class="nav-link {{activeMenu('semesters')}}">
               <i class="nav-icon fas fa-books"></i>
               <p>
                 Semester
@@ -244,7 +243,7 @@
           </li>
 
           <li class="nav-item menu-open">
-            <a href="{{ route('admin.subjects.list') }}" class="nav-link">
+            <a href="{{ route('admin.subjects.list') }}" class="nav-link {{activeMenu('subjects')}}">
               <i class="nav-icon fad fa-book-open"></i>
               <p>
                 Subjects
@@ -253,7 +252,7 @@
           </li>
 
          <li class="nav-item menu-open">
-            <a href="{{ route('admin.lactures.list') }}" class="nav-link">
+            <a href="{{ route('admin.lactures.list') }}" class="nav-link {{activeMenu('lactures')}}">
               <i class="nav-icon fas fa-presentation"></i>
               <p>
                 Lacture
@@ -282,10 +281,11 @@
       <b>Version</b> 3.1.0
     </div>
   </footer>
-
-
+</div>
 
 </div>
+</div>
+
 
 <!-- ./wrapper -->
 
@@ -323,5 +323,17 @@
 <script src="{{ asset('/js/demo.js') }}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('/js/dashboard.js') }}"></script>
+{{-- custome js --}}
+<script src="{{ asset('js/custome.js') }}"></script>
+{{-- toastr --}}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="{{ asset('/js/toastr.min.js') }}"></script>
+<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+        <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+{{-- toastr --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
+
 </body>
 </html>

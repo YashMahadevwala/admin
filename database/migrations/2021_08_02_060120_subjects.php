@@ -21,6 +21,7 @@ class Subjects extends Migration
             $table->string('semester');
             $table->string('faculty');
             $table->timestamps();
+            // $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

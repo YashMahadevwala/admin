@@ -8,6 +8,7 @@
  <div class="content-wrapper">
 
 
+
   <!-- Content Header (Page header) -->
   <div class="content-header">
     <div class="container-fluid">
@@ -30,6 +31,14 @@
 
   <!-- Main content -->
   <section class="content">
+    @if (Session::get('success'))
+    {{-- {{success_alert()}} --}}
+    {!! success_alert(Session::get('success')) !!}
+    @elseif(Session::get('updated'))
+  {!! success_alert(Session::get('updated')) !!}
+  @elseif(Session::get('danger'))
+  {!! danger_alert(Session::get('danger')) !!}
+  @endif
     <div class="container-fluid">
       <section class="content">
         <div class="container-fluid">
@@ -55,9 +64,9 @@
                     <tbody>
                     
 
-                      @foreach ($sems as $sem)
+                      @foreach ($sems as $k => $sem)
                       <tr class="odd">
-                        <td class="dtr-control sorting_1" tabindex="0"> {{ $sem->id }} </td>
+                        <td class="dtr-control sorting_1" tabindex="0"> {{ $k + 1 }} </td>
                         <td>{{ $sem->semestername }}</td>
                         <td>{{ $sem->is_active }}</td>
                         <td><a type="button" href="{{ route('admin.semesters.edit',[$sem->id]) }}" class="btn btn-warning" style="float:right">Edit</a></td>

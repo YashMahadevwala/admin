@@ -8,6 +8,7 @@
  <div class="content-wrapper">
 
 
+
   <!-- Content Header (Page header) -->
   <div class="content-header">
     <div class="container-fluid">
@@ -30,6 +31,14 @@
 
   <!-- Main content -->
   <section class="content">
+    @if (Session::get('success'))
+    {{-- {{success_alert()}} --}}
+    {!! success_alert(Session::get('success')) !!}
+    @elseif(Session::get('updated'))
+  {!! success_alert(Session::get('updated')) !!}
+  @elseif(Session::get('danger'))
+  {!! danger_alert(Session::get('danger')) !!}
+  @endif
     <div class="container-fluid">
       <section class="content">
         <div class="container-fluid">
@@ -58,9 +67,9 @@
                     <tbody>
           
 
-                      @foreach ($subs as $sub)
+                      @foreach ($subs as $k => $sub)
                       <tr class="odd">
-                        <td class="dtr-control sorting_1" tabindex="0"> {{ $sub->id }} </td>
+                        <td class="dtr-control sorting_1" tabindex="0"> {{ $k + 1 }} </td>
                         <td>{{ $sub->subjectname }}</td>
                         <td>{{ $sub->is_active }}</td>
                         <td>{{ $sub->type }}</td>
