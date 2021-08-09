@@ -7,6 +7,7 @@ use App\Models\user;
 use App\Models\role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Pagination\Paginator;
 
 class userController extends Controller
 {
@@ -20,6 +21,7 @@ class userController extends Controller
 
     public function storeuser(Request $request)
     {
+
         $valid = $request->validate([
             'firstname' => 'required',
             'lastname' => 'required',
@@ -60,11 +62,9 @@ class userController extends Controller
               });
       
             
-            return redirect()->route('admin.users.list')->with('success','data saved !');
-
+              return response()->json(['success'=>'Data Saved Successfully !']);
+            // return redirect()->route('admin.users.list')->with('success','data saved !');
         }
-
-        // return $request;
     }
 
     public function userlist()
@@ -73,7 +73,7 @@ class userController extends Controller
         $data = DB::table('user')
             ->join('role', 'user.role_no', '=', 'role.role_id')
             ->select('user.*', 'role.*')
-            ->get();
+            ->paginate(5);
         // return $data;
         return view('admin.userlist',['users'=>$data]);
     }
@@ -113,9 +113,9 @@ class userController extends Controller
             }
             $updateuser->save();
 
-            return redirect()->route('admin.users.list')->with('updated','Data Updated !');
+            // return redirect()->route('admin.users.list')->with('updated','Data Updated !');
         // }
-        
+        return response()->json(['success'=>'Data Updated Successfully !']);
         // return $request->id;
         // return $user;
 
@@ -126,7 +126,9 @@ class userController extends Controller
         $user = user::find($id);
         $user->delete();
         // return $user;
-        return redirect()->route('admin.users.list')->with('danger','Data Deleted !');
+        // return redirect()->route('admin.users.list')->with('danger','Data Deleted !');
+        return response()->json(['success'=>'Data Deleted Successfully !']);
+
     }
 
     

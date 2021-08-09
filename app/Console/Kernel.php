@@ -2,8 +2,10 @@
 
 namespace App\Console;
 
+use App\Console\Commands\insertCommand;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+USE Illuminate\Support\Facades\Log;
 
 class Kernel extends ConsoleKernel
 {
@@ -14,6 +16,8 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         //
+        Commands\testCommand::class,
+        Commands\insertCommand::class,
     ];
 
     /**
@@ -24,7 +28,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('demo:cron')->everyMinute();
+        // everyMinite() & that type of method is set on server side
+        $schedule->command('insert:data');
     }
 
     /**

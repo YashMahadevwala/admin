@@ -2,6 +2,8 @@
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="csrf-token" content="{{ csrf_token() }}" id="_token">
+
       <title>@yield('title')</title>
     
       <!-- Google Font: Source Sans Pro -->
@@ -24,13 +26,15 @@
       <link rel="stylesheet" href="{{ asset('css/daterangepicker.css') }}">
       <!-- summernote -->
       {{-- Toastr --}}
-      <link rel="stylesheet" href="{{ asset('/css/toastr.min.css') }}">
-      <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" integrity="sha512-3pIirOrwegjM6erE5gPSwkUzO+3cTjpnV9lexlNZqvupR64iZBnOOTiiLPb9M36zpMScbmUNIcHUqKD47M719g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <link rel="stylesheet" href="{{ asset('css/bootstrap-4.min.css') }}">
+      {{-- multi select --}}
+      <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
+      
       {{-- <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet"> --}}
       <link href="https://kit-pro.fontawesome.com/releases/v5.15.3/css/pro.min.css" rel="stylesheet">
+      <link rel="stylesheet" href="{{ asset('/css/custom.css') }}">
     </head>
-    <body class="hold-transition sidebar-mini layout-fixed">
+    <body class="hold-transition sidebar-mini layout-fixed main_body" data-url="{{ url('/') }}">
 
 <div class="wrapper">
   <!-- Navbar -->
@@ -259,6 +263,17 @@
               </p>
             </a>
           </li>
+
+          <li class="nav-item menu-open">
+            <a href="{{ route('ajax.add') }}" class="nav-link {{activeMenu('lactures')}}">
+              <i class="nav-icon fas fa-presentation"></i>
+              <p>
+                Ajax Crud
+              </p>
+            </a>
+          </li>
+
+          
           
         </ul>
       </nav>
@@ -273,7 +288,6 @@
   {{-- content --}}
   @yield('contant')
 
-
   <footer class="main-footer">
     <strong>Copyright &copy; 2014-2021 <a href="{{ route('admin.dashboard') }}">AdminLTE.io</a>.</strong>
     All rights reserved.
@@ -285,6 +299,7 @@
 
 </div>
 </div>
+
 
 
 <!-- ./wrapper -->
@@ -326,14 +341,9 @@
 {{-- custome js --}}
 <script src="{{ asset('js/custome.js') }}"></script>
 {{-- toastr --}}
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script src="{{ asset('/js/toastr.min.js') }}"></script>
-<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-        <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-{{-- toastr --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
+<script src="{{ asset('js/sweetalert2.min.js') }}"></script>
+{{-- select 2 --}}
+<script src="{{ asset('js/select2.min.js') }}"></script>
 
 </body>
 </html>

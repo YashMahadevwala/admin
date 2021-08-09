@@ -8,6 +8,7 @@ use App\Http\Controllers\subjectController;
 use App\Http\Controllers\lactureController;
 use App\Http\Controllers\setpasswordController;
 use App\Http\Controllers\testController;
+use App\Http\Controllers\ajaxController;
 
 /*
 |--------------------------------------------------------------------------
@@ -84,3 +85,8 @@ Route::post('setpassword/setpassword',[setpasswordController::class,'setuppasswo
 Route::get('encode',[setpasswordController::class,'testencode']);
 
 Route::get('toastr',[testController::class,'toastr']);
+
+Route::group(['prefix' => 'ajax'],function(){
+    Route::get('add',[ajaxController::class,'add'])->name('ajax.add');
+    Route::post('add',[ajaxController::class,'store'])->name('ajax.store');
+});

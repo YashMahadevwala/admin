@@ -14,7 +14,7 @@ class subjectController extends Controller
     //
     public function subjectlist()
     {
-        $data = subject::all();
+        $data = subject::paginate(5);;
         // return $data;
         // dd( $data);
         return view('admin.sublist',['subs'=>$data]);

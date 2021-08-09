@@ -30,7 +30,7 @@ if (! function_exists('activeMenu')) {
 
 function success_alert($success){
     return '  <div class="alert alert-success alert-dismissible fade show" role="alert">
-     <strong>Data !</strong> ' . $success .'
+     <strong>Success !</strong> ' . $success .'
      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
        <span aria-hidden="true">&times;</span>
      </button>
@@ -39,7 +39,7 @@ function success_alert($success){
 
 function danger_alert($danger){
     return '  <div class="alert alert-danger alert-dismissible fade show" role="alert">
-     <strong>Data !</strong> ' . $danger .'
+     <strong>Danger !</strong> ' . $danger .'
      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
        <span aria-hidden="true">&times;</span>
      </button>

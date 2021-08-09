@@ -13,12 +13,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0">User</h1>
+          <h1 class="m-0">Student</h1>
         </div><!-- /.col -->
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Home</a></li>
-            <li class="breadcrumb-item active">User</li>
+            <li class="breadcrumb-item active">Student</li>
           </ol>
         </div><!-- /.col -->
       </div><!-- /.row -->
@@ -35,42 +35,48 @@
           <div class="card card-primary">
             <div class="card-header">
               @isset($user)
-              <h3 class="card-title">Update User</h3>
+              <h3 class="card-title">Update Student</h3>
               @else
-              <h3 class="card-title">Add New User</h3>
+              <h3 class="card-title">Add New Student</h3>
               @endisset
               <a type="button" href="{{ route('admin.users.list') }}" class="btn btn-danger" style="float:right">Back</a>
             </div>
-            <div class="custom-target" id="custom-target"></div>
-            <form method="POST" class="allform" enctype="multipart/form-data" id="userform" update-url="/admin/users/update" form-url="/admin/users/add">
-            {{-- action="@isset($user) {{ route('admin.users.update') }} @else {{ route('admin.users.add') }} @endisset" --}}
+            <form id="studentform" method="POST" action="@isset($user) {{ route('admin.users.update') }} @else {{ route('admin.users.add') }} @endisset" enctype="multipart/form-data">
               {{-- @csrf --}}
               <div class="card-body">
                 <div class="form-group">
-                  <label for="firstname">First Name</label>
+                  <label for="firstname">Student Name</label>
                   @isset($user)
                   <input type="hidden" class="form-control" id="id" name="id" value="{{ $user->id }}">
-                  <input type="text" class="form-control" id="firstname" name="firstname" value="{{ $user->firstname }}" placeholder="Enter First Name">
+                  <input type="text" class="form-control" id="firstname" name="firstname" value="{{ $user->firstname }}" placeholder="Enter Student Name">
                   @else
-                  <input type="text" class="form-control" id="firstname" name="firstname" value="{{ old('firstname') }}" placeholder="Enter First Name">
+                  <input type="text" class="form-control" id="studentname" name="studentname" value="{{ old('firstname') }}" placeholder="Enter Student Name">
                   @endisset
-                  {{-- @error('firstname')
+                  @error('firstname')
                       <p style="color: red"><i class="fas fa-exclamation-circle"></i> {{ $message }} </p>
-                  @enderror --}}
+                  @enderror
 
                 </div>
-                <div class="form-group">
-                  <label for="lastname">Last Name</label>
-                  @isset($user)
-                  <input type="text" class="form-control" id="lastname" name="lastname" value="{{ $user->lastname }}" placeholder="Enter Last Name">
-                  @else
-                  <input type="text" class="form-control" id="lastname" name="lastname" value="{{ old('lastname') }}" placeholder="Enter Last Name">
-                  @endisset
-                </div>
+                  <div class="form-group">
+                    <label for="active">Semester</label>
+                    @isset($sub)
+                    <select class="form-control" name="semester" id="semester">
+                      @foreach ($data as $sem)
+                      <option value="{{ $sem->id }}" {{$sub->semester == $sem->id  ? 'selected' : ''}}> {{ $sem->semestername }} </option>
+                      @endforeach
+                    </select>
+                    @else 
+                      <select class="form-control" name="semester" id="semester">
+                          @foreach ($data as $sem)
+                          <option value="{{ $sem->id }}" selected> {{ $sem->semestername }} </option>
+                          @endforeach
+                        </select>
+                    @endisset
+                  </div>
 
-                {{-- @error('lastname')
+                @error('lastname')
                       <p style="color: red"><i class="fas fa-exclamation-circle"></i> {{ $message }} </p>
-                @enderror --}}
+                @enderror
 
                 <div class="form-group">
                   <label for="email">Email</label>
@@ -81,9 +87,9 @@
                   @endisset
                 </div>
 
-                {{-- @error('email')
+                @error('email')
                       <p style="color: red"><i class="fas fa-exclamation-circle"></i> {{ $message }} </p>
-                @enderror --}}
+                @enderror
 
                 <div class="form-group">
                   <label for="mobile">Phone Number</label>
@@ -94,46 +100,31 @@
                   @endisset
                 </div>
 
-                {{-- @error('mobile')
+                @error('mobile')
                       <p style="color: red"><i class="fas fa-exclamation-circle"></i> {{ $message }} </p>
-                @enderror --}}
+                @enderror
 
                 <div class="form-group">
-                  <label for="role">Select Role</label>
-                  @isset($user)
-                  <select class="form-control" name="role" id="role">
-                    @foreach ($role as $item)
-                      <option value="{{ $item->role_id }}" {{$user->role_no == $item->role_id  ? 'selected' : ''}}> {{ $item->role_name }} </option>
+                  <label for="active">Select Subject</label>
+                  @isset($sub)
+                  <select class="form-control" name="subjects" id="subjects">
+                    @foreach ($subs as $sub)
+                    <option value="{{ $sub->id }}" {{$sub->subjectname == $sub->id  ? 'selected' : ''}}> {{ $sem->semestername }} </option>
                     @endforeach
                   </select>
-                  @else
-                  <select class="form-control" name="role" id="role">
-                    @foreach ($role as $item)
-                      <option value="{{ $item->role_id }}"> {{ $item->role_name }} </option>
-                    @endforeach
-                  </select>
+                  @else 
+                    <select class="js-example-basic-multiple" multiple="multiple" class="form-control" name="subjects" id="subjects">
+                        @foreach ($subs as $sub)
+                        <option value="{{ $sub->id }}"> {{ $sub->subjectname }} </option>
+                        @endforeach
+                      </select>
                   @endisset
+                </div>        
 
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputFile">Upload Avtar</label>
-                  <div class="input-group">
-                    <div class="custom-file">
-                      <input type="file" class="custom-file-input" id="avtar" name="avtar">
-                      <label class="custom-file-label" for="avtar">Choose file</label>
-                    </div>
-                    <div class="input-group-append">
-                      <span class="input-group-text">Upload</span>
-                    </div>
-                  </div>
-                  {{-- @error('avtar')
-                      <p style="color: red"><i class="fas fa-exclamation-circle"></i> {{ $message }} </p>
-                  @enderror --}}
-                </div>
               </div>
               <div class="card-footer">
                 @isset($user)
-                <button type="submit" class="btn btn-primary" id="update">Update</button>
+                <button type="submit" class="btn btn-primary">Update</button>
                 @else
                 <button type="submit" class="btn btn-primary" id="submit">Add</button>
                 @endisset

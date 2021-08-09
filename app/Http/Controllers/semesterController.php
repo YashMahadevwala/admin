@@ -37,7 +37,7 @@ class semesterController extends Controller
 
     public function semesterlist()
     {
-        $sem = semester::all();
+        $sem = semester::paginate(5);
         return view('admin.semlist',['sems'=>$sem]);
     }
 

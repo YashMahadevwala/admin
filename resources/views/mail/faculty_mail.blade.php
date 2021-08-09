@@ -25,7 +25,7 @@
                     <tr>
                         <td style="text-align:center;">
                           <a href="https://rakeshmandal.com" title="logo" target="_blank">
-                            <img width="60" src="https://i.ibb.co/hL4XZp2/android-chrome-192x192.png" title="logo" alt="logo">
+                            <img width="60" src="https://i.ibb.co/hL4XZp2/android-chrome-192x192.png" title="{{ env('APP_NAME') }}" alt="{{ env('APP_NAME') }}">
                           </a>
                         </td>
                     </tr>
