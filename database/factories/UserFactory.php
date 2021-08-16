@@ -30,6 +30,7 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
         ];
     }
+    // User::factory()->count(5)->create() 
 
     /**
      * Indicate that the model's email address should be unverified.

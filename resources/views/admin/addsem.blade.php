@@ -41,7 +41,8 @@
               @endisset
               <a type="button" href="{{ route('admin.semesters.list') }}" class="btn btn-danger" style="float:right">Back</a>
             </div>
-            <form method="POST" action="@isset($sems) {{ route('admin.semesters.update') }} @else {{ route('admin.semesters.store') }} @endisset" enctype="multipart/form-data">
+            <form class="allform" enctype="multipart/form-data" id="semesterform" update-url="/admin/semesters/update" form-url="/admin/semesters/add">
+            {{-- method="POST" action="@isset($sems) {{ route('admin.semesters.update') }} @else {{ route('admin.semesters.store') }} @endisset"  --}}
               @csrf
               <div class="card-body">
                 <div class="form-group">
@@ -52,9 +53,9 @@
                   @else
                   <input type="text" class="form-control" id="semestername" name="semestername" value="{{ old('semestername') }}" placeholder="Enter Semester Name">
                   @endisset
-                  @error('semestername')
+                  {{-- @error('semestername')
                       <p style="color: red"><i class="fas fa-exclamation-circle"></i> {{ $message }} </p>
-                  @enderror
+                  @enderror --}}
 
                 </div>
                 <div class="form-group">
@@ -72,16 +73,16 @@
                   @endisset
                 </div>
 
-                @error('active')
+                {{-- @error('active')
                       <p style="color: red"><i class="fas fa-exclamation-circle"></i> {{ $message }} </p>
-                @enderror
-                
+                @enderror --}}
+                <input type="hidden" name="module_name" value="semesters">
               </div>
               <div class="card-footer">
                 @isset($sems)
-                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="submit" class="btn btn-primary" id="update">Update</button>
                 @else
-                <button type="submit" class="btn btn-primary">Add</button>
+                <button type="submit" class="btn btn-primary" id="submit">Add</button>
                 @endisset
                 <a type="button" href="{{ route('admin.semesters.list') }}" class="btn btn-secondary">Cancel</a>
               </div>

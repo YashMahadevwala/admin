@@ -9,6 +9,7 @@ use App\Http\Controllers\lactureController;
 use App\Http\Controllers\setpasswordController;
 use App\Http\Controllers\testController;
 use App\Http\Controllers\ajaxController;
+use App\Http\Controllers\studentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +46,7 @@ Route::group(['middleware' => ['loginCheck']], function(){
         Route::get('edit/{id}',[userController::class,'edituser'])->name('admin.users.edit');
         Route::post('update',[userController::class,'updateuser'])->name('admin.users.update');
         Route::get('delete/{id}',[userController::class,'deleteuser'])->name('admin.users.delete');
+        Route::get('show',[userController::class,'showdata'])->name('admin.users.show');
     });
 
     // semester
@@ -55,6 +57,7 @@ Route::group(['middleware' => ['loginCheck']], function(){
         Route::get('edit/{id}',[semesterController::class,'editsemester'])->name('admin.semesters.edit');
         Route::post('update',[semesterController::class,'updatesemester'])->name('admin.semesters.update');
         Route::get('delete/{id}',[semesterController::class,'deletesemester'])->name('admin.semesters.delete');
+        Route::get('show',[semesterController::class,'showdata'])->name('admin.semesters.show');
     });
     // subjects
     Route::group(['prefix' => 'subjects'], function () {
@@ -64,6 +67,8 @@ Route::group(['middleware' => ['loginCheck']], function(){
         Route::get('edit/{id}',[subjectController::class,'editsubject'])->name('admin.subjects.edit');
         Route::post('update',[subjectController::class,'updatesubject'])->name('admin.subjects.update');
         Route::get('delete/{id}',[subjectController::class,'deletesubject'])->name('admin.subjects.delete');
+        Route::get('show',[subjectController::class,'showdata'])->name('admin.subjects.show');
+
     });
     // Lacture
     Route::group(['prefix' => 'lactures'], function () {
@@ -74,6 +79,19 @@ Route::group(['middleware' => ['loginCheck']], function(){
         Route::post('update',[lactureController::class,'updatelacture'])->name('admin.lactures.update');
         Route::get('delete/{id}',[lactureController::class,'deletelacture'])->name('admin.lactures.delete');
     });
+ 
+    // students
+    Route::group(['prefix' => 'students'], function () {
+        Route::get('list',[studentController::class,'studentlist'])->name('admin.students.list');
+        Route::get('add',[studentController::class,'addstudent'])->name('admin.students.add');
+        Route::post('add',[studentController::class,'storestudent'])->name('admin.students.store');
+        Route::get('edit/{id}',[studentController::class,'editstudent'])->name('admin.students.edit');
+        Route::post('update',[studentController::class,'updatestudent'])->name('admin.students.update');
+        Route::get('delete/{id}',[studentController::class,'deletestudent'])->name('admin.students.delete');
+        Route::get('show',[studentController::class,'showdata'])->name('admin.students.show');
+
+    });
+
     
 });
 });
@@ -81,12 +99,11 @@ Route::group(['middleware' => ['loginCheck']], function(){
 Route::get('setpassword/set/{id}',[setpasswordController::class,'setpassword'])->name('setpassword.set');
 Route::post('setpassword/setpassword',[setpasswordController::class,'setuppassword'])->name('setpassword.setpassword');
 
-// test
 Route::get('encode',[setpasswordController::class,'testencode']);
 
 Route::get('toastr',[testController::class,'toastr']);
 
-Route::group(['prefix' => 'ajax'],function(){
-    Route::get('add',[ajaxController::class,'add'])->name('ajax.add');
-    Route::post('add',[ajaxController::class,'store'])->name('ajax.store');
-});
+Route::get('relation',[testController::class,'relationship']);
+
+Route::post('change_semester_status',[semesterController::class,'change_status']);
+Route::post('change_subject_status',[subjectController::class,'change_status']);

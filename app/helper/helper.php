@@ -2,6 +2,7 @@
 
 use App\Models\user;
 use App\Models\semester;
+use App\Models\subject;
 // use Symfony\Component\HttpFoundation\Request;
 // use Illuminate\Http\Request;
 
@@ -45,6 +46,19 @@ function danger_alert($danger){
      </button>
     </div>';
 }
+
+
+
+function getSemesterNameForStudentRecord($id){
+    $data = semester::where('id',$id)->select('semestername')->first();
+    return $data->semestername;
+}
+
+function getSubjectsNameForStudentRecord($id){
+    $data = subject::where('id',$id)->select('subjectname')->first();
+    return $data->subjectname;
+}
+
 
 
 ?>

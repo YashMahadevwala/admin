@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Aastudent extends Migration
+class StudentsSubjects extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class Aastudent extends Migration
      */
     public function up()
     {
-        Schema::create('students', function (Blueprint $table) {
+        Schema::create('students_subjects', function (Blueprint $table) {
+            // Schema::dropIfExists('students');
             $table->id();
-            $table->string('studentname');
-            $table->string('semester');
-            $table->string('email');
-            $table->double('mobile');
-            $table->string('subjects');
-            $table->foreign('subjects')->references('id')->on('subjects');
+            $table->unsignedBigInteger('student_id');
+            $table->unsignedBigInteger('subjects');
             $table->timestamps();
+            $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
+            $table->foreign('subjects')->references('id')->on('subjects');
             // $table->foreign('user_id')->references('id')->on('users');
         });
     }
@@ -33,6 +32,6 @@ class Aastudent extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('students_subjects');
     }
 }

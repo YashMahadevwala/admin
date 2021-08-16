@@ -50,7 +50,7 @@ class adminController extends Controller
         // return $request;
         $valid = $request->validate([
             'email' => 'required | email',
-            'password' => 'required | min:4',
+            'password' => 'required',
         ]);
 
         if ($valid) {

@@ -30,15 +30,17 @@ class semesterController extends Controller
             $addsem->is_active = $request->active;
             $addsem->save();
 
-            return redirect()->route('admin.semesters.list')->with('success','data saved !');
+            // return redirect()->route('admin.semesters.list')->with('success','data saved !');
+            return response()->json(['success'=>'Data Saved Successfully !']);
 
         }
     }
 
     public function semesterlist()
     {
-        $sem = semester::paginate(5);
-        return view('admin.semlist',['sems'=>$sem]);
+        // $sem = semester::paginate(5);
+        return view('admin.semlist');
+        // ,['sems'=>$sem]
     }
 
     public function editsemester($id)
@@ -65,7 +67,9 @@ class semesterController extends Controller
             $updatesemester->is_active = $request->active;
             $updatesemester->save();
 
-            return redirect()->route('admin.semesters.list')->with('updated','Data Updated !');
+            // return redirect()->route('admin.semesters.list')->with('updated','Data Updated !');
+        return response()->json(['success'=>'Data Updated Successfully !']);
+
 
         }
 
@@ -76,8 +80,71 @@ class semesterController extends Controller
         $semester = semester::find($id);
         $semester->delete();
         // return $semester;
-        return redirect()->route('admin.semesters.list')->with('danger','Data Deleted !');
+        // return redirect()->route('admin.semesters.list')->with('danger','Data Deleted !');
+        return response()->json(['success'=>'Data Deleted Successfully !']);
+
     }
 
+    public function showdata(Request $request)
+    {
+        // $users = DB::table('user')->select('*');
+        $statusGreenBtn = '<i class="fas fa-circle" style="color: green"></i>';
+        $statusRedBtn = '<i class="fas fa-circle" style="color: red"></i>';
+        $sem = semester::get();
+        return datatables()->of($sem)
+            ->addIndexColumn()
+            // ->addColumn('status', function($sem) {
+            //     // return ($sem->is_active == "active") ? 'Active' : 'Deactive';
+            //     return '{{!! <input class="custom-control-input" type="checkbox" id="customCheckbox1" value="option1"> !!}}';
+            // })
+            // ->addColumn('status', function ($item) {
+            //     return '<input type="checkbox" id="" name="someCheckbox" />';
+            //   })
+            // ->editColumn('status', function($sem) {
+                // if(data_rem->is_strike) {
+                    // $html = $data_rem->data;
+                // }
+                // else {
+                    // fix this
+                    // return '<input type="checkbox" class="sem-check" data-id="'. $sem->id .'" name="semester-check" '. ($sem->is_active == 'active' ? 'checked' : '') .' />';
+                // }
+                // return $html;
+            // })
+            // ->rawColumns(['status'])
+            // ->editColumn('action', function($sem) {
+            //     return '<a type="button" href="/admin/semesters/edit/'.$sem->id .'" class="btn btn-warning">Edit</a>
+            //     <a type="button" delete-url="/admin/semesters/delete/" data-id="'. $sem->id .'" href="/admin/users/delete/'.$sem->id .'" class="btn-del btn btn-danger">Delete</a>';
+            // })
+            // ->rawColumns(['action'])
+
+            // ->addColumn('action', function($sem) {
+            //     return '<a type="button" href="/admin/semesters/edit/'.$sem->id .'" class="btn btn-warning">Edit</a>
+            //     <a type="button" delete-url="/admin/semesters/delete/" data-id="'. $sem->id .'" href="/admin/users/delete/'.$sem->id .'" class="btn-del btn btn-danger">Delete</a>';
+            // })
+            // ->editColumn('delete', 'Delete')
+            ->make(true);
+    }
+    
+
+    public function change_status(Request $request)
+    {
+        // dd($request->original);
+        
+        // dd($change);
+        if($request->val == 'yes'){
+            $change = new semester;
+            $change = semester::find($request->id);
+            $change->is_active = 'active';
+            $change->save();
+            $re = true;
+        }else{
+            $change = new semester;
+            $change = semester::find($request->id);
+            $change->is_active = 'deactive';
+            $change->save();
+        }
+            return response()->json(['success'=>'Status Changed !']);
+
+    }
   
 }

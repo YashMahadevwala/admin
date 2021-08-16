@@ -29,10 +29,16 @@
       <link rel="stylesheet" href="{{ asset('css/bootstrap-4.min.css') }}">
       {{-- multi select --}}
       <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
+      {{-- dataTable --}}
+      <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap4.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/responsive.bootstrap4.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/buttons.bootstrap4.min.css') }}">
       
       {{-- <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet"> --}}
       <link href="https://kit-pro.fontawesome.com/releases/v5.15.3/css/pro.min.css" rel="stylesheet">
       <link rel="stylesheet" href="{{ asset('/css/custom.css') }}">
+
+      
     </head>
     <body class="hold-transition sidebar-mini layout-fixed main_body" data-url="{{ url('/') }}">
 
@@ -265,10 +271,10 @@
           </li>
 
           <li class="nav-item menu-open">
-            <a href="{{ route('ajax.add') }}" class="nav-link {{activeMenu('lactures')}}">
+            <a href="{{ route('admin.students.list') }}" class="nav-link {{activeMenu('students')}}">
               <i class="nav-icon fas fa-presentation"></i>
               <p>
-                Ajax Crud
+                Students
               </p>
             </a>
           </li>
@@ -281,9 +287,6 @@
     </div></div></div><div class="os-scrollbar os-scrollbar-horizontal os-scrollbar-unusable"><div class="os-scrollbar-track"><div class="os-scrollbar-handle" style="width: 100%; transform: translate(0px, 0px);"></div></div></div><div class="os-scrollbar os-scrollbar-vertical"><div class="os-scrollbar-track"><div class="os-scrollbar-handle" style="height: 16.8755%; transform: translate(0px, 0px);"></div></div></div><div class="os-scrollbar-corner"></div></div>
     <!-- /.sidebar -->
   </aside>
-
-
-
 
   {{-- content --}}
   @yield('contant')
@@ -299,10 +302,10 @@
 
 </div>
 </div>
-
-
-
 <!-- ./wrapper -->
+
+
+   
 
 <!-- jQuery -->
 <script src="{{ asset('/js/jquery.min.js') }}"></script>
@@ -345,5 +348,18 @@
 {{-- select 2 --}}
 <script src="{{ asset('js/select2.min.js') }}"></script>
 
+<!-- DataTables  & Plugins -->
+<script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ asset('js/responsive.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('js/dataTables.buttons.min.js') }}"></script>
+<script src="{{ asset('js/buttons.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('js/jszip.min.js') }}"></script>
+<script src="{{ asset('js/pdfmake.min.js') }}"></script>
+<script src="{{ asset('js/vfs_fonts.js') }}"></script>
+<script src="{{ asset('js/buttons.html5.js') }}"></script>
+<script src="{{ asset('js/buttons.print.js') }}"></script>
+<script src="{{ asset('js/buttons.colVis.js') }}"></script>
 </body>
 </html>

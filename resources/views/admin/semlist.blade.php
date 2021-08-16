@@ -52,7 +52,8 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                  <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row"><div class="col-sm-12"><table id="example2" class="table table-bordered table-hover dataTable dtr-inline" role="grid" aria-describedby="example2_info">
+                  <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row"><div class="col-sm-12">
+                    {{-- <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" role="grid" aria-describedby="example2_info">
                     <thead>
                     <tr role="row">
                       <th class="sorting sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">ID</th>
@@ -61,18 +62,19 @@
                       <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="2" aria-label="Engine version: activate to sort column ascending">Action</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody> --}}
                     
 
-                      @foreach ($sems as $k => $sem)
-                      <tr class="odd">
-                        <td class="dtr-control sorting_1" tabindex="0"> {{ $k + 1 }} </td>
-                        <td>{{ $sem->semestername }}</td>
-                        <td>{{ $sem->is_active }}</td>
-                        <td><a type="button" href="{{ route('admin.semesters.edit',[$sem->id]) }}" class="btn btn-warning" style="float:right">Edit</a></td>
-                        <td><a type="button" href="{{ route('admin.semesters.delete',[$sem->id]) }}" class="btn btn-danger" style="float:right">Delete</a></td>
-                        </tr>
-                      @endforeach
+                      <table class="table table-bordered" id="semesters_data">
+                        <thead>
+                           <tr>
+                              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Id</th>
+                              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Semester Name</th>
+                              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Status</th>
+                              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Action</th>
+                           </tr>
+                        </thead>
+                     </table>
                       
                     
                     </tbody>
@@ -80,8 +82,8 @@
                     <tr><th rowspan="1" colspan="1">Rendering engine</th><th rowspan="1" colspan="1">Browser</th><th rowspan="1" colspan="1">Platform(s)</th><th rowspan="1" colspan="1">Engine version</th><th rowspan="1" colspan="1">CSS grade</th></tr>
                     </tfoot> --}}
                   </table></div></div>
-                  {{ $sems->links("pagination::bootstrap-4") }}
-                Showing {{ $sems->perPage() }} Of {{$sems->total() }} results Out Of
+                  {{-- {{ $sems->links("pagination::bootstrap-4") }}
+                Showing {{ $sems->perPage() }} Of {{$sems->total() }} results Out Of --}}
                 </div>
                 <!-- /.card-body -->
               </div>

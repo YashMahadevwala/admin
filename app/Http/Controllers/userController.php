@@ -8,6 +8,7 @@ use App\Models\role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Pagination\Paginator;
+use Yajra\DataTables\DataTables;
 
 class userController extends Controller
 {
@@ -70,12 +71,13 @@ class userController extends Controller
     public function userlist()
     {
         // $data = user::all();
-        $data = DB::table('user')
-            ->join('role', 'user.role_no', '=', 'role.role_id')
-            ->select('user.*', 'role.*')
-            ->paginate(5);
-        // return $data;
-        return view('admin.userlist',['users'=>$data]);
+        // $data = DB::table('user')
+        //     ->join('role', 'user.role_no', '=', 'role.role_id')
+        //     ->select('user.*', 'role.*')
+        //     ->paginate(5);
+        // // return $data;
+        return view('admin.userlist');
+        // ,['users'=>$data]
     }
 
     public function edituser($id)
@@ -131,6 +133,27 @@ class userController extends Controller
 
     }
 
+    public function showdata(Request $request)
+    {
+        // $users = DB::table('user')->select('*');
+        $statusGreenBtn = '<i class="fas fa-circle" style="color: green"></i>';
+        $statusRedBtn = '<i class="fas fa-circle" style="color: red"></i>';
+        $users = DB::table('user')
+            ->join('role', 'user.role_no', '=', 'role.role_id')
+            ->select('user.*', 'role.*')
+            ->get();
+        return Datatables::of($users)
+            ->addIndexColumn()
+            // ->addColumn('status', function($users) {
+            //     return isset($users->password) ? 'Active' : 'Deactive';
+            // })
+            ->addColumn('action', function($users) {
+                return '<a type="button" href="/admin/users/edit/'.$users->id .'" class="btn btn-warning">Edit</a>
+                <a type="button" delete-url="/admin/users/delete/" data-id="'. $users->id .'" href="/admin/users/delete/'.$users->id .'" class="btn-del btn btn-danger" style="float:right">Delete</a>';
+            })
+            // delete-url="/admin/users/delete/" data-id="{{ $user->id }}"
+            ->make(true);
+    }
     
 
 }

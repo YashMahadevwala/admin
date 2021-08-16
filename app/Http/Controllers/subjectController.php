@@ -14,15 +14,13 @@ class subjectController extends Controller
     //
     public function subjectlist()
     {
-        $data = subject::paginate(5);;
-        // return $data;
-        // dd( $data);
-        return view('admin.sublist',['subs'=>$data]);
+        
+        return view('admin.sublist');
     }
 
     public function addsubject()
     {
-        $sems = semester::all();
+        $sems = semester::where('is_active','active')->get();
         // return $sems;
         $fac = user::where('role_no','=',4)->get();
         // return $fac;
@@ -48,7 +46,9 @@ class subjectController extends Controller
             $addsub->faculty = $request->faculty;
             $addsub->save();
 
-            return redirect()->route('admin.subjects.list')->with('success','data saved !');
+            // return redirect()->route('admin.subjects.list')->with('success','data saved !');
+            return response()->json(['success'=>'Data Saved Successfully !']);
+
 
         }
     }
@@ -81,7 +81,9 @@ class subjectController extends Controller
             $updatesub->faculty = $request->faculty;
             $updatesub->save();
 
-            return redirect()->route('admin.subjects.list')->with('updated','Data Updated !');
+            // return redirect()->route('admin.subjects.list')->with('updated','Data Updated !');
+            return response()->json(['success'=>'Data Updated Successfully !']);
+
 
         }
 
@@ -92,7 +94,62 @@ class subjectController extends Controller
         $subject = subject::find($id);
         $subject->delete();
         // return $subject;
-        return redirect()->route('admin.subjects.list')->with('danger','Data Deleted !');
+        // return redirect()->route('admin.subjects.list')->with('danger','Data Deleted !');
+        return response()->json(['success'=>'Data Deleted Successfully !']);
+
     }
+
+    public function showdata(Request $request)
+    {
+        
+        // $sem = semester::get();
+        // $subs = subject::select('subjects.*','user.firstname','user.lastname')
+        // ->where('user.id','=','subjects.faculty')
+        // ->get();
+        $subs = DB::table('subjects')
+            ->join('user', 'user.id', '=', 'subjects.faculty')
+            ->join('semester', 'semester.id', '=', 'subjects.semester')
+            ->select('subjects.*', 'user.firstname','user.lastname','semester.semestername')
+            ->get();
+        // dd($subs);
+        // die;
+        return Datatables()->of($subs)
+            ->addIndexColumn()
+            ->editColumn('faculty', function ($subs) {
+                return $subs->firstname.' '.$subs->lastname;
+                 }) 
+            // ->addColumn('status', function($subs) {
+            //     return ($subs->is_active == "active") ? 'Active' : 'Deactive';
+            // })
+            // ->addColumn('action', function($subs) {
+            //     return '<a type="button" href="/admin/subjects/edit/'.$subs->id .'" class="btn btn-warning">Edit</a>
+            //     <a type="button" delete-url="/admin/subjects/delete/" data-id="'. $subs->id .'" href="/admin/users/delete/'.$subs->id .'" class="btn-del btn btn-danger">Delete</a>';
+            // })
+            // ->editColumn('delete', 'Delete')
+            ->make(true);
+    }
+
+
+    public function change_status(Request $request)
+    {
+        // dd($request->original);
+        
+        // dd($change);
+        if($request->val == 'yes'){
+            $change = new subject;
+            $change = subject::find($request->id);
+            $change->is_active = 'active';
+            $change->save();
+            $re = true;
+        }else{
+            $change = new subject;
+            $change = subject::find($request->id);
+            $change->is_active = 'deactive';
+            $change->save();
+        }
+            return response()->json(['success'=>'Status Changed !']);
+
+    }
+
 
 }

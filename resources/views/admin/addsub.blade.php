@@ -41,7 +41,8 @@
               @endisset
               <a type="button" href="{{ route('admin.subjects.list') }}" class="btn btn-danger" style="float:right">Back</a>
             </div>
-            <form method="POST" action="@isset($sub) {{ route('admin.subjects.update') }} @else {{ route('admin.subjects.store') }} @endisset" enctype="multipart/form-data">
+            <form method="POST" enctype="multipart/form-data" class="allform" id="subjectform" update-url="/admin/subjects/update" form-url="/admin/subjects/add">
+            {{-- action="@isset($sub) {{ route('admin.subjects.update') }} @else {{ route('admin.subjects.store') }} @endisset" --}}
               @csrf
               <div class="card-body">
                 <div class="form-group">
@@ -52,9 +53,9 @@
                   @else
                   <input type="text" class="form-control" id="subjectname" name="subjectname" value="{{ old('subjectname') }}" placeholder="Enter Subject Name">
                   @endisset
-                  @error('subjectname')
+                  {{-- @error('subjectname')
                       <p style="color: red"><i class="fas fa-exclamation-circle"></i> {{ $message }} </p>
-                  @enderror
+                  @enderror --}}
 
                 </div>
 
@@ -150,11 +151,12 @@
                
                 
               </div>
+              <input type="hidden" name="module_name" value="subjects">
               <div class="card-footer">
                 @isset($sub)
-                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="submit" class="btn btn-primary" id="update">Update</button>
                 @else
-                <button type="submit" class="btn btn-primary">Add</button>
+                <button type="submit" class="btn btn-primary" id="submit">Add</button>
                 @endisset
                 <a type="button" href="{{ route('admin.subjects.list') }}" class="btn btn-secondary">Cancel</a>
               </div>

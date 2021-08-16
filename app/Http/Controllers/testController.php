@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\student;
 
 class testController extends Controller
 {
-    public function toastr()
+    public function relationship()
     {
-        return view('test');
+        $stud = student::get();
+        dd($stud);
     }
 }
